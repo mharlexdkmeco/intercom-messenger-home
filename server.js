@@ -2,12 +2,17 @@
 const express = require('express');
 const app = express();
 
-// This route will be called by Intercom when rendering the Messenger Home app
-app.get('/initialize', (req, res) => {
-    res.json({
+app.all('/initialize', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json({
         canvas: {
             content: {
                 components: [
+                    {
+                        type: "text",
+                        text: "Contact Us",
+                        style: "header"
+                    },
                     {
                         type: "button",
                         label: "Live Chat",
